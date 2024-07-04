@@ -1,0 +1,24 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<div class="fashion_technology_area">
+            <div class="fashion">
+              <div class="single_post_content">
+                <h2><span>{{ category.name }}</span></h2>
+                <ul class="business_catgnav wow fadeInDown">
+                    {% for news in news_list %}
+{#                        {% if forloop.first %}#}
+                  <li>
+                    <figure class="bsbig_fig"> <a href="{{ news.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ news.image.url }}"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="{{ news.get_absolute_url }}">{{ news.title }}</a> </figcaption>
+                      <p>{{ news.body|truncatewords:18 }}</p>
+                    </figure>
+                  </li>
+{#                        {% endif %}#}
+                    {% endfor %}
+                </ul>
+               </div>
+            </div>
+
+
+{% endblock %}
