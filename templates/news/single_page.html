@@ -1,4 +1,5 @@
 {% extends 'news/base.html' %}
+{% load hitcount_tags %}
 {% load static %}
 {% block content %}
   <section id="contentSection">
@@ -12,23 +13,28 @@
               <li class="active">Mobile</li>
             </ol>
             <h1>{{ news.title }}</h1>
+            {{ hit_count }}
             <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>{{ news.author }}</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
             <div class="single_page_content"> <img class="img-center" src="{{ news.image.url }}" alt="">
               <p>{{ news.body }}</p>
               <blockquote>Kategoriya - {{ news.category }}</blockquote>
-              <ul>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-              </ul>
-              <h2>This is h2 title</h2>
-              <h3>This is h3 title</h3>
-              <h4>This is h4 title</h4>
-              <h5>This is h5 title</h5>
-              <h6>This is h6 Title</h6>
+              <a href="{% url 'update_news' news.slug %}" type="button">Yangilikni taxrirlash</a> |
+              <a href="{% url 'delete_news' news.slug %}" type="button">Yangilikni o`chirish</a>
+              <p></p>
+                <h2>Sharxlar</h2>
+                {% for comment in comments %}
+                {{ comment.body }} : Avtor : {{ comment.author }}
+                <p></p>
+                {% endfor %}
+                <p></p>
+                <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                    <button type="submit">Yuborish</button>
+                </form>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
               <button class="btn default-btn">Default</button>
               <button class="btn btn-red">Red Button</button>
               <button class="btn btn-yellow">Yellow Button</button>

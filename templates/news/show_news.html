@@ -3,4 +3,7 @@
     <h4>{{ news.title }}</h4><p></p>
     {{ news.published_time }}<p></p>
     {{ news.body }}
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    </form>
 {% endblock %}

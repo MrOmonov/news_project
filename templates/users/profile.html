@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+    <h2>Foydalanuvchi haqida ma'lumot</h2>
+    <h3>{{ user.username }} saytimizga xush kelibsiz</h3>
+    <h4>Shaxsiy ma'lumotlar</h4>
+    <img src="{{ profile.profile_photo.url }}" width="30%">
+    <p></p>
+    <label>Username</label><input value="{{ user.username }}"><p></p>
+    <label>E-mail</label><input value="{{ user.email }}"><p></p>
+    <label>Ism</label><input value="{{ user.first_name }}"><p></p>
+    <label>Familiya</label><input value="{{ user.last_name }}"><p></p>
+    <label>Tug`ilgan kun</label><input value="{{ profile.date_of_birth }}"><p></p>
+
+    <label>Manzil</label><input value="{{ profile.address }}"><p></p>
+    <label>Oxirgi marta qachon kirilgan</label><input value="{{ user.last_login }}">
+    <p></p>
+    <h4><a href="{% url 'password_change' %}">Parolni o`zgartirish</a></h4>
+    <form method="post" action="{% url 'logout_user' %}">{% csrf_token %}<input type="submit" value="Chiqish"></form>
+    <p></p>
+    <a href="{%  url 'profile_edit' %}">Ma'lumotlarni o`zgartirish</a>
+    <p></p>
+    <a href="{% url 'password_reset' %}">Parolni tashlash</a>
+{% endblock content %}

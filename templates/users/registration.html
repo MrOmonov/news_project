@@ -1,0 +1,9 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Tasdiqlash</button>
+    <p></p>
+    </form>
+{% endblock content %}

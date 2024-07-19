@@ -7,6 +7,9 @@ name = "pypi"
 django = "*"
 pillow = "*"
 transliterate = "*"
+django-hitcount = "*"
+django-shell-plus = "*"
+django-extensions = "*"
 
 [dev-packages]
 

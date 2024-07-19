@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% block content %}
+    <h2>Admin foydalanuvchilar</h2>
+    {% for user in admins %}
+        {{ user.username }}
+        <p></p>
+    {% endfor %}
+        <h2>Boshqa roldagi foydalanuvchilar</h2>
+    <p></p>
+    {% for user in users %}
+        {{ user.username }}
+        <p></p>
+    {% endfor %}
+{% endblock content %}

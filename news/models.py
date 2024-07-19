@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 import transliterate
+from hitcount.models import HitCount, HitCountMixin
 from slugify import slugify
 from .managers import Publishedmanager
 
@@ -56,7 +58,7 @@ class NewsModel(models.Model):
         # print('All saved', self.slug)
 
     def get_absolute_url(self):
-        return reverse("show_news", kwargs={'post_slug': self.slug})
+        return reverse("show_news", kwargs={'news_slug': self.slug})
 
 
 class ContactModel(models.Model):
@@ -66,3 +68,22 @@ class ContactModel(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Comments(models.Model):
+    news = models.ForeignKey(NewsModel,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    author = models.ForeignKey(User,
+                               related_name='comments',
+                               on_delete=models.CASCADE)
+    body = models.TextField(null=True, blank=True)
+    created_time = models.DateTimeField(auto_now_add=True)
+    updated_time = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['created_time']
+
+    def __str__(self):
+        return f"Bu komment:{self.body}.Muallif: {self.author} "

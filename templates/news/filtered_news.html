@@ -1,0 +1,10 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content%}
+    <h2><< {{ key }} >> - buyicha natijalar</h2>
+    {% for news in list_news %}
+    <h3><a href="{{ news.get_absolute_url }}">{{ news.title }}</a></h3>
+        <p>{{ news.photo }}</p>
+    {% endfor %}
+
+{% endblock content %}

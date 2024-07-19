@@ -38,7 +38,13 @@
             </ul>
           </div>
           <div class="header_top_right">
-            <p>Friday, December 05, 2045</p>
+
+              {% if request.user.is_authenticated %}
+                  <p><a href="{% url 'profile_user' %}" style="color: #c4e3f3">Shaxsiy kabinet</a></p>
+              {% else %}
+                  <p><a href="{% url 'login_user' %}" style="color: #c4e3f3">Kirish |</a><a href="{% url 'registration' %}" style="color: #c4e3f3">Ro'yxatdan o'tish</a></p>
+              {% endif %}
+          <p>Friday, December 05, 2045   |</p>
           </div>
         </div>
       </div>
@@ -72,11 +78,14 @@
 {#          </li>#}
 
           <li><a href="{% url 'contact_page' %}">Biz bilan bog'lanish</a></li>
+
           <li><a href="{% url '404_page' %}">404 Saxifa</a></li>
+          <li><form method="get" action="{% url 'filtered_news' %}"><input type="search" name="q" placeholder="Qidiruv...."></form></li>
         </ul>
       </div>
     </nav>
   </section>
+<li></li>
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
