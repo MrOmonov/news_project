@@ -10,6 +10,8 @@ transliterate = "*"
 django-hitcount = "*"
 django-shell-plus = "*"
 django-extensions = "*"
+python-decouple = "*"
+whitenoise = "*"
 
 [dev-packages]
 
